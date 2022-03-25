@@ -1,0 +1,110 @@
+.imgbox {
+    /* position: fixed;
+    max-width: 100%;
+    max-height: 100%; */
+}
+
+.carousel {
+    z-index: -99;
+}
+
+
+/* keeps this behind all content */
+
+.carousel .item {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+
+.carousel .one {
+    background: url(../../web/images/login1.jpg);
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.carousel .two {
+    background: url(../../web/images/login1.jpg);
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.carousel .three {
+    background: url(../../web/images/login1.jpg);
+    background-size: cover;
+    -moz-background-size: cover;
+}
+
+.carousel .active.left {
+    left: 0;
+    opacity: 0;
+    z-index: 2;
+}
+
+
+/* ---------------------------------------------- */
+
+.card {
+    margin-top: 10%;
+    width: 400px;
+    border: none
+}
+
+.btr {
+    border-top-right-radius: 5px !important
+}
+
+.btl {
+    border-top-left-radius: 5px !important
+}
+
+.btn-dark {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd
+}
+
+.nav-pills {
+    display: table !important;
+    width: 100%
+}
+
+.nav-pills .nav-link {
+    border-radius: 0px;
+    border-bottom: 1px solid #0d6efd40
+}
+
+.nav-item {
+    display: table-cell;
+    background: #0d6efd2e
+}
+
+.form {
+    padding: 10px;
+    height: 300px;
+}
+
+.form input {
+    margin-bottom: 12px;
+    border-radius: 3px
+}
+
+.form input:focus {
+    box-shadow: none
+}
+
+.form button {
+    margin-top: 20px;
+    /* width: 350px; */
+}
