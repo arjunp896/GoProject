@@ -1,0 +1,67 @@
+
+	db, err := sql.Open("sqlite3", "./foo.db")
+
+	checkErr(err)
+
+	// insert
+
+	stmt, err := db.Prepare("CREATE TABLE IF NOT EXISTS vehicle(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(64) NULL);")
+	checkErr(err)
+
+	stmt.Exec()
+
+	stmt, err = db.Prepare("INSERT INTO vehicle(name) values(?)")
+	checkErr(err)
+
+	res, err := stmt.Exec("creta")
+	checkErr(err)
+
+	id, err := res.LastInsertId()
+	checkErr(err)
+
+	fmt.Println(id)
+	// update
+	stmt, err = db.Prepare("update vehicle set name=? where id=?")
+	checkErr(err)
+
+	res, err = stmt.Exec("creta updated", id)
+	checkErr(err)
+
+	affect, err := res.RowsAffected()
+	checkErr(err)
+
+	fmt.Println(affect)
+
+	// query
+	rows, err := db.Query("SELECT * FROM vehicle")
+	checkErr(err)
+	var uid int
+	var name string
+	// var department string
+	// var created time.Time
+
+	fmt.Println("rows :")
+
+	for rows.Next() {
+		err = rows.Scan(&uid, &name)
+		checkErr(err)
+		fmt.Println(uid)
+		fmt.Println(name)
+	}
+
+	rows.Close() //good habit to close
+
+	// delete
+	stmt, err = db.Prepare("delete from vehicle where id=?")
+	checkErr(err)
+
+	res, err = stmt.Exec(id)
+	checkErr(err)
+
+	affect, err = res.RowsAffected()
+	checkErr(err)
+
+	fmt.Println(affect)
+
+	db.Close()
+

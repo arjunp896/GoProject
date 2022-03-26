@@ -1,3 +1,55 @@
+function fnSubmitLogin() {
+
+    $('#loginForm')
+        .ajaxForm({
+            url: '/login',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+            },
+            error: function(data) {
+                console.log(data)
+                var json = JSON.parse(data.responseText);
+                console.log(json)
+                alert("Error: " + json.error);
+            }
+        });
+}
+
+function fnSubmitSignUp() {
+
+    $('#signUpForm')
+        .ajaxForm({
+            url: '/signup', // or whatever
+            dataType: 'json',
+            success: function(data) {
+
+                console.log(data)
+
+                if (data.redirect) {
+                    window.location.href = data.redirect;
+                }
+
+
+            },
+            error: function(data) {
+
+                console.log(data)
+                var json = JSON.parse(data.responseText);
+                console.log(json)
+                alert("Error: " + json.error);
+            }
+        });
+
+
+
+
+}
+
+
 function login() {
 
 
@@ -11,9 +63,6 @@ function login() {
     $("#pills-profile").fadeOut(100);
 
 
-
-
-    e.preventDefault();
 }
 
 function signup() {
@@ -28,7 +77,4 @@ function signup() {
     $("#pills-profile").delay(100).fadeIn(100);
     $("#pills-home").fadeOut(100);
 
-
-
-    e.preventDefault();
 }

@@ -2,25 +2,46 @@ package main
 
 import (
 	"fmt"
+	"goproject/pkg/abstractFactory"
+	"goproject/pkg/constants"
+	"goproject/pkg/db"
 	"goproject/pkg/routes"
 	"log"
 	"net/http"
 	"os/exec"
 	"runtime"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
 
 	r := routes.InitializeHandlers()
 
+	abstractFactory := abstractFactory.GetFactory(constants.Sport)
+
+	car := abstractFactory.MakeCar()
+
+	car.BuildCar()
+
 	openbrowser()
 
 	http.ListenAndServe(":8080", r)
+
+	db.CloseConnection()
+
+	println("Connection closed")
+}
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
 }
 
 func openbrowser() {
 
-	url := "http://localhost:8080"
+	url := "http://localhost:8080/login"
 
 	var err error
 
