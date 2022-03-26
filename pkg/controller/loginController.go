@@ -2,6 +2,8 @@ package controller
 
 import (
 	"encoding/json"
+	"goproject/config"
+	"goproject/pkg/constants"
 	"goproject/pkg/service"
 	"net/http"
 
@@ -23,16 +25,29 @@ func ValidateUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	resp := make(map[string]string)
 
-	if result {
+	config.SetSession()
+	session, _ := config.GetSession(r, constants.USER_COOKIE_NAME)
 
-		resp["redirect"] = "/car/cars/"
+	if result != -1 {
+
+		session.Values[constants.AUTHENTICATED_COOKIE_VALUES] = true
+		session.Values[constants.USERID_COOKIE_VALUES] = result
+
+		session.Save(r, w)
+
+		resp["redirect"] = string(constants.DASHBOARD_ROUTE)
 		w.WriteHeader(http.StatusAccepted)
 
 	} else {
 
+		session.Values["authenticated"] = false
+		session.Values["userid"] = -1.
+
 		resp["error"] = "Username or password is incorrect"
 		w.WriteHeader(http.StatusUnauthorized)
 	}
+
+	session.Save(r, w)
 
 	json.NewEncoder(w).Encode(resp)
 

@@ -105,7 +105,7 @@ body {
 /* Remove extra left and right margins, due to padding */
 
 .row {
-    margin: 0 -5px;
+    margin: 0 -50px;
 }
 
 
@@ -141,6 +141,14 @@ body {
     border-radius: 5%;
     height: fit-content;
     min-height: 300px;
+}
+
+.card-id,
+.card-company,
+.card-model,
+.card-price {
+    text-decoration: dashed;
+    color: white;
 }
 
 

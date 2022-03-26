@@ -2,6 +2,8 @@ package controller
 
 import (
 	"fmt"
+	"goproject/config"
+	"goproject/pkg/constants"
 	"html/template"
 	"log"
 	"net/http"
@@ -17,6 +19,18 @@ func LoadLoginPage(w http.ResponseWriter, r *http.Request) {
 	// fmt.Print("\nload login page")
 
 	renderTemplate(w, "./web/login.html")
+
+}
+
+func LoadDashboardPage(w http.ResponseWriter, r *http.Request) {
+
+	session, _ := config.GetSession(r, constants.USER_COOKIE_NAME)
+
+	if _, ok := session.Values[constants.AUTHENTICATED_COOKIE_VALUES].(bool); ok {
+		renderTemplate(w, "./web/dashboard.html")
+	} else {
+		http.Redirect(w, r, "/login", http.StatusUnauthorized)
+	}
 
 }
 
@@ -36,12 +50,12 @@ func renderTemplate(w http.ResponseWriter, page string) {
 	}
 }
 
-func renderTemplateWithData(w http.ResponseWriter, page string, data []byte) {
+func renderTemplateWithData(w http.ResponseWriter, page string, data interface{}) {
 	// func renderTemplate(params ...interface{}) {
 
 	t, err := template.ParseFiles(page)
 	if err != nil {
-		log.Println(err)
+		log.Println("render with data parse in template", err)
 		return
 	}
 

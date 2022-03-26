@@ -16,7 +16,6 @@ func InitializeHandlers() *mux.Router {
 	r.PathPrefix("/web/").Handler(http.StripPrefix("/web/", http.FileServer(http.Dir("web/"))))
 
 	r.HandleFunc("/car/cars/", controller.GetCars).Methods("GET")
-	r.HandleFunc("/car/{id}", controller.GetCar).Methods("GET")
 
 	// load index page
 	r.Handle(string(constants.INDEX_ROUTE), http.FileServer(http.Dir("./web/")))
@@ -38,6 +37,14 @@ func InitializeHandlers() *mux.Router {
 
 	// retrurn all years of mfg by category and make
 	r.HandleFunc(string(constants.GET_YEARS_ROUTE), controller.GetMfgYears)
+
+	// load dashboard page
+	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage)
+
+	// load dashboard page
+	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage).Methods("GET")
+
+	r.HandleFunc(string(constants.CAR_DETAILS_ROUTE), controller.GetCar).Methods("GET")
 
 	return r
 }

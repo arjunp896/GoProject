@@ -11,25 +11,34 @@ $(function() {
     $(".column:first").hide()
 
     $.ajax({
-        url: "https://jsonplaceholder.typicode.com/posts",
+        url: "/car/cars/",
         success: function(result) {
+
+            console.log(result);
+
             $.each(result, function(index, item) {
 
                 var cards = $(".column:first").clone() //clone first divs
 
-                var userId = item.userId;
-                var typeId = item.id;
-                var imgId = item.img;
-                var companyId = item.comapny;
-                var modelId = item.model
-                var priceId = item.price;
+                // var userId = item.userId;
+                var vehicleid = item.id;
+                var imgurl = item.imageurl;
+                var company = item.make;
+                var model = item.model
+                var price = item.price;
 
                 //add values inside divs
-                $(cards).find(".card-header").html("user id: " + userId + " - " + "id: " + typeId);
-                $(cards).find(".card-img").attr("src", "../web/images/home1.jpg");
-                $(cards).find(".card-company").html("Comapny : " + titleId);
-                $(cards).find("card-model").html("Model : " + modelId);
-                $(cards).find(".card-price").html("Base Price : " + priceId);
+                $(cards).find(".card-id").attr("href", "/car/" + vehicleid);
+
+                if (imgurl == "") {
+                    $(cards).find(".card-img").attr("src", "../web/images/home1.jpg");
+                } else {
+                    $(cards).find(".card-img").attr("src", imgurl);
+                }
+
+                $(cards).find(".card-company").text("Comapny : " + company);
+                $(cards).find(".card-model").text("Model : " + model);
+                $(cards).find(".card-price").text("Base Price : " + price);
                 $(cards).show() //show cards
 
                 $(cards).appendTo($(".row")) //append to container

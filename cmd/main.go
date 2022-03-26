@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goproject/pkg/abstractFactory"
-	"goproject/pkg/constants"
+	"goproject/config"
 	"goproject/pkg/db"
 	"goproject/pkg/routes"
 	"log"
@@ -18,13 +17,9 @@ func main() {
 
 	r := routes.InitializeHandlers()
 
-	abstractFactory := abstractFactory.GetFactory(constants.Sport)
-
-	car := abstractFactory.MakeCar()
-
-	car.BuildCar()
-
 	openbrowser()
+
+	config.UnsetSession()
 
 	http.ListenAndServe(":8080", r)
 

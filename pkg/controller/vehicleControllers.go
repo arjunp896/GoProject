@@ -20,12 +20,16 @@ func GetCars(w http.ResponseWriter, r *http.Request) {
 
 func GetCar(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-type", "application/json")
+	// w.Header().Set("Content-type", "application/json")
 
 	params := mux.Vars(r)
 
 	car := service.GetCar(params["id"])
 
-	json.NewEncoder(w).Encode(car)
+	// json.NewEncoder(w).Encode(car)
+
+	// carJsn := []byte(fmt.Sprintf("%v", car))
+
+	renderTemplateWithData(w, string(http.Dir("./web/vehicle_details.html")), car)
 
 }

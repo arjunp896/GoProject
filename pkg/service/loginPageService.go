@@ -5,13 +5,15 @@ import (
 	"goproject/pkg/db"
 )
 
-func ValidateUser(username string, password string) bool {
+func ValidateUser(username string, password string) int {
 
 	query := fmt.Sprintf(`SELECT user_id 
 							FROM Users
-							WHERE 	username=%s AND 
-									password = %s;`,
+							WHERE 	username= '%s' AND 
+									password = '%s';`,
 		username, password)
+
+	// println("query" + query)
 
 	con, err := db.GetConnection()
 
@@ -23,16 +25,13 @@ func ValidateUser(username string, password string) bool {
 
 	var userid int = -1
 
-	for rows.Next() {
+	if rows.Next() {
 		err = rows.Scan(&userid)
 		checkErr(err)
-		fmt.Println(userid)
-
-		return userid != -1
-
+		// fmt.Println(userid)
 	}
 
-	return false
+	return userid
 }
 
 func CheckIsNewUserName(username string) bool {
