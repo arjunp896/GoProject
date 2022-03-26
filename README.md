@@ -10,3 +10,5 @@ go get -u github.com/gorilla/mux
 ## run main file using
  
 * go run cmd/main.go
+## main file
+cmd/main.go
