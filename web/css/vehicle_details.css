@@ -1,0 +1,30 @@
+.container_details {
+    justify-content: baseline;
+    border: 2px solid rgb(red, green, blue);
+    background-color: white;
+    padding: 0px 20px 20px 20px;
+    position: sticky;
+    bottom: 1rem;
+    align-self: flex-end;
+    z-index: 1000;
+    height: 175px;
+}
+
+input {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    justify-items: center;
+    justify-content: center;
+}
+
+td button {
+    border-radius: 5px;
+    width: 200px;
+    border: none;
+    color: snow;
+    background-color: limegreen;
+    height: 50px;
+    font-size: larger;
+}

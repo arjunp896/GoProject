@@ -5,15 +5,15 @@ type VehicleType string
 type Category string
 
 const (
-	Car  VehicleType = "car"
-	Bike VehicleType = "bike"
+	Car  VehicleType = "Car"
+	Bike VehicleType = "Bike"
 
-	Sport    Category = "sport"
-	Offroad  Category = "offroad"
-	Racing   Category = "racing"
-	Touring  Category = "touring"
-	Cruiser  Category = "cruiser"
-	Electric Category = "electric"
+	Sport    Category = "Sport"
+	Offroad  Category = "Offroad"
+	Racing   Category = "Racing"
+	Touring  Category = "Touring"
+	Cruiser  Category = "Cruiser"
+	Electric Category = "Electric"
 
 	USER_COOKIE_NAME string = "user-cookie"
 

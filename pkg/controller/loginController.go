@@ -6,8 +6,6 @@ import (
 	"goproject/pkg/constants"
 	"goproject/pkg/service"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 func ValidateUser(w http.ResponseWriter, r *http.Request) {
@@ -55,15 +53,21 @@ func ValidateUser(w http.ResponseWriter, r *http.Request) {
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 
-	params := mux.Vars(r)
+	r.ParseForm()
 
-	username := params["username"]
-	name := params["name"]
-	password := params["password"]
+	username := r.Form["regi_username"][0]
+	name := r.Form["regi_name"][0]
+	password := r.Form["regi_password"][0]
 
 	var result bool
 
+	// fmt.Println("\n\nform un: " + username[0])
+	// fmt.Println("\n\nform name: " + name[0])
+	// fmt.Println("\n\nform " + password[0])
+
 	result = service.CheckIsNewUserName(username)
+
+	// fmt.Println("\n\nNew user: ", result, "\n\n")
 
 	resp := make(map[string]string)
 
@@ -73,8 +77,8 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		result = service.CreateUser(username, password, name)
 
 		if result {
-			w.WriteHeader(http.StatusCreated)
 			resp["message"] = "Registration successful"
+			w.WriteHeader(http.StatusCreated)
 		} else {
 			w.WriteHeader(http.StatusInternalServerError)
 			resp["error"] = "Something went wrong! unable to register"
@@ -88,7 +92,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 	} else {
 
-		resp["error"] = "Username or password is incorrect"
+		resp["error"] = "Username is already in use Please choose again"
 		w.WriteHeader(http.StatusUnauthorized)
 	}
 

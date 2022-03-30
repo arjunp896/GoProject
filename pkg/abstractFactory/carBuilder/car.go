@@ -1,4 +1,4 @@
-package abstractFactory
+package carBuilder
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ type Car struct {
 	Rooftop string `json:"rooftop"`
 }
 
-type ICar interface {
+type ICarBuilder interface {
 	BuildCar()
 }
 

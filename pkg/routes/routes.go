@@ -15,7 +15,7 @@ func InitializeHandlers() *mux.Router {
 
 	r.PathPrefix("/web/").Handler(http.StripPrefix("/web/", http.FileServer(http.Dir("web/"))))
 
-	r.HandleFunc("/car/cars/", controller.GetCars).Methods("GET")
+	// ----------------- load page -----------------
 
 	// load index page
 	r.Handle(string(constants.INDEX_ROUTE), http.FileServer(http.Dir("./web/")))
@@ -23,11 +23,21 @@ func InitializeHandlers() *mux.Router {
 	// load login page
 	r.HandleFunc(string(constants.LOGIN_ROUTE), controller.LoadLoginPage).Methods("GET")
 
+	// load dashboard page
+	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage)
+
+	// load dashboard page
+	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage).Methods("GET")
+
+	// -----------------------------------------------
+
 	// validate user for login
 	r.HandleFunc(string(constants.LOGIN_ROUTE), controller.ValidateUser).Methods("POST")
 
 	// create new user
 	r.HandleFunc(string(constants.SIGNUP_ROUTE), controller.CreateUser).Methods("POST")
+
+	// ----------------- filter -----------------
 
 	// return all vehicle categories
 	r.HandleFunc(string(constants.GET_CATEGORIES_ROUTE), controller.GetCategories)
@@ -38,13 +48,36 @@ func InitializeHandlers() *mux.Router {
 	// retrurn all years of mfg by category and make
 	r.HandleFunc(string(constants.GET_YEARS_ROUTE), controller.GetMfgYears)
 
-	// load dashboard page
-	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage)
+	// ------------------------------------------
 
-	// load dashboard page
-	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage).Methods("GET")
+	// ----------------- Get vehicle -------------
+	r.HandleFunc(string(constants.GET_ALL_VEHICLES_ROUTE), controller.GetVehicles).Methods("GET")
+
+	r.HandleFunc(string(constants.GET_ALL_CARS_ROUTE), controller.GetCars).Methods("GET")
 
 	r.HandleFunc(string(constants.CAR_DETAILS_ROUTE), controller.GetCar).Methods("GET")
+
+	r.HandleFunc(string(constants.GET_ALL_BIKES_ROUTE), controller.GetBikes).Methods("GET")
+
+	r.HandleFunc(string(constants.BIKE_DETAILS_ROUTE), controller.GetBike).Methods("GET")
+
+	// cars
+
+	r.HandleFunc(string(constants.GET_CARS_BY_CATEGORY), controller.GetCarsByFilter).Methods("GET")
+
+	r.HandleFunc(string(constants.GET_CARS_BY_CATEGORY_MAKE), controller.GetCarsByFilter).Methods("GET")
+
+	r.HandleFunc(string(constants.GET_CARS_BY_CATEGORY_MAKE_YEAR), controller.GetCarsByFilter).Methods("GET")
+
+	// bikes
+
+	r.HandleFunc(string(constants.GET_BIKES_BY_CATEGORY), controller.GetBikesByFilter).Methods("GET")
+
+	r.HandleFunc(string(constants.GET_BIKES_BY_CATEGORY_MAKE), controller.GetBikesByFilter).Methods("GET")
+
+	r.HandleFunc(string(constants.GET_BIKES_BY_CATEGORY_MAKE_YEAR), controller.GetBikesByFilter).Methods("GET")
+
+	// ------------------------------------------
 
 	return r
 }

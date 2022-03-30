@@ -6,4 +6,4 @@ type Bike struct {
 	models.Vehicle
 }
 
-type IBike interface{}
+type IBikeBuilder interface{}

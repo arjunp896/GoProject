@@ -25,21 +25,19 @@ function fnSubmitSignUp() {
         .ajaxForm({
             url: '/signup', // or whatever
             dataType: 'json',
+            method: "POST",
             success: function(data) {
 
-                console.log(data)
+                alert(data.message);
 
-                if (data.redirect) {
-                    window.location.href = data.redirect;
-                }
-
+                console.log("Success: " + data);
 
             },
             error: function(data) {
 
-                console.log(data)
+                console.log("Error" + data);
                 var json = JSON.parse(data.responseText);
-                console.log(json)
+                console.log(json);
                 alert("Error: " + json.error);
             }
         });

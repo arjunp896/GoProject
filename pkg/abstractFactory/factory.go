@@ -1,30 +1,31 @@
 package abstractFactory
 
 import (
+	"goproject/pkg/abstractFactory/carBuilder"
 	"goproject/pkg/constants"
 	"log"
 )
 
-type IAbstractFactory interface {
-	MakeCar() ICar
-	MakeBike() IBike
+type IVehicleFactory interface {
+	MakeCar() carBuilder.Car
+	MakeBike() IBikeBuilder
 }
 
-var mapFactory = make(map[constants.Category]IAbstractFactory)
+var mapFactory = make(map[constants.Category]IVehicleFactory)
 
-func GetFactory(category constants.Category) IAbstractFactory {
+func GetVehicleFactory(category constants.Category) IVehicleFactory {
 
 	if _, ok := mapFactory[category]; ok {
 
 		return mapFactory[category]
 	} else {
 
-		var factory IAbstractFactory = nil
+		var factory IVehicleFactory = nil
 
 		switch category {
 
 		case constants.Sport:
-			factory = &Sport{}
+			factory = &SportDealer{}
 
 		case constants.Cruiser:
 

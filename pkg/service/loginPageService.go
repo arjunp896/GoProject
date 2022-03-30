@@ -36,14 +36,13 @@ func ValidateUser(username string, password string) int {
 
 func CheckIsNewUserName(username string) bool {
 
-	query := fmt.Sprintf(`SELECT username FROM Users 
-							WHERE username = %s`, username)
+	query := `SELECT username FROM Users WHERE username = ?`
 
 	con, err := db.GetConnection()
 
 	checkErr(err)
 
-	row, err := con.Query(query)
+	row, err := con.Query(query, username)
 
 	checkErr(err)
 
