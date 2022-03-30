@@ -12,16 +12,19 @@
 /* ------------search filter---------------------------------------- */
 
 .dpcontainer {
-    padding-left: 15%;
+    padding-left: 20%;
     display: flex;
     flex-direction: row;
+    background-color: rgb(211, 219, 243);
+    padding: 5px 20%;
+    box-shadow: rgb(39, 37, 37);
 }
 
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #f84444;
     color: white;
-    padding: 14px;
-    font-size: 18px;
+    padding: 2px;
+    font-size: 16px;
     border: none;
     cursor: pointer;
     min-width: 150px;
@@ -33,7 +36,7 @@
 
 .dropdown {
     position: relative;
-    margin-right: 10%;
+    margin-right: 20%;
     display: inline-block;
 }
 
@@ -44,7 +47,7 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
@@ -54,7 +57,7 @@
 
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 3px 5px;
     text-decoration: none;
     display: block;
 }
@@ -77,7 +80,7 @@
 /* Change the background color of the dropdown button when the dropdown content is shown */
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #303b3a;
 }
 
 
@@ -88,8 +91,9 @@
 }
 
 body {
-    padding-top: 5%;
-    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 6%;
+    font-family: 'Open Sans', 'Helvetica Neue', 'sans-serif';
+    font-size: large;
 }
 
 
@@ -132,11 +136,12 @@ body {
 /* Style the counter cards */
 
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.815);
     /* this adds the "card" effect */
     padding: 16px;
+    margin-top: 8%;
     text-align: center;
-    background-color: #3c8875;
+    background-color: #cfdce7;
     width: 18rem;
     border-radius: 5%;
     height: fit-content;
@@ -148,7 +153,7 @@ body {
 .card-model,
 .card-price {
     text-decoration: dashed;
-    color: white;
+    color: rgb(17, 16, 16);
 }
 
 

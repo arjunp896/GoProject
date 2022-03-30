@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="../web/js/jquery-1.11.1.min.js"></script>
+    <script src="../web/js/jquery.min.js"></script>
     <script src="../web/js/dashboard.js"></script>
 
     <link href="../web/css/bootstrap.min.css" rel="stylesheet">
@@ -22,45 +22,39 @@
     <!-- code for navbar ----------------------------------->
     <div id="includedContent"></div>
     <!-- code for search filter------------------------------------- -->
-    <div class="dpcontainer">
+    <div class="dpcontainer shadow">
         <!-- <div class="btngroup"> -->
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
+        <div id="category" class="dropdown category-dropdown">
+            <button data-id="0" class="dropbtn">Select Category</button>
+            <div class="dropdown-content">
+                <a data-id="-1" href="#">LIn1</a>
+
+            </div>
+        </div>
+        <div id="make" class="dropdown">
+            <button class="dropbtn">Select Brand</button>
+            <div class="dropdown-content">
+                <a class="dropdown-item" href="# ">Link 1</a>
+
+            </div>
+        </div>
+        <div id="year" class="dropdown">
+            <button class="dropbtn">Select Year</button>
             <div class="dropdown-content">
                 <a href="#">Link 1</a>
 
             </div>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
 
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
-
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
-
-            </div>
-        </div>
     </div>
     <!-- </div> -->
     <!-- code for cards--------------------------------------------------------- -->
     <div class="container">
         <div class="row">
             <div class="column">
-                <a class="card-id">
+                <a href="" class="card-id">
                     <div class="card card-body border-dark mb-3">
-                        <img class="card-img" src="" alt="Card image">
+                        <img class="card-img" src="../web/images/home1.jpg" alt="Card image">
                         <strong>
                             <h4 class="card-company">Card title</h4>
                         </strong>
