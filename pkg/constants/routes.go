@@ -10,14 +10,18 @@ const (
 	GET_MAKES_ROUTE      Route = "/{vehicle}/getmakes/{category}"
 	GET_YEARS_ROUTE      Route = "/{vehicle}/getyears/{category}/{make}"
 	DASHBOARD_ROUTE      Route = "/dashboard"
+	MYCARS_ROUTE         Route = "/myvehicles"
 
+	GET_VEHICLE_ROUTE      Route = "/vehicle/{id}"
 	GET_ALL_VEHICLES_ROUTE Route = "/vehicles"
+
+	CREATE_CUSTOM_VEHICLE_ROUTE Route = "/createvehicle"
 
 	GET_ALL_CARS_ROUTE Route = "/car/cars/"
 	CAR_DETAILS_ROUTE  Route = "/car/{id}"
 
-	BIKE_DETAILS_ROUTE  Route = "/bike/bikes/"
-	GET_ALL_BIKES_ROUTE Route = "/bike/{id}"
+	GET_ALL_BIKES_ROUTE Route = "/bike/bikes/"
+	BIKE_DETAILS_ROUTE  Route = "/bike/{id}"
 
 	GET_CARS_BY_CATEGORY           Route = "/car/cars/{category}"
 	GET_CARS_BY_CATEGORY_MAKE      Route = "/car/cars/{category}/{make}"

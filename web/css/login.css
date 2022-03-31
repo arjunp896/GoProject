@@ -22,7 +22,8 @@
     transition: opacity 1s;
 }
 
-.carousel .one {
+
+/* .carousel .one {
     background: url(../../web/images/login1.jpg);
     background-size: cover;
     -moz-background-size: cover;
@@ -44,7 +45,7 @@
     left: 0;
     opacity: 0;
     z-index: 2;
-}
+} */
 
 
 /* ---------------------------------------------- */
@@ -108,7 +109,6 @@
 .form button {
     margin-top: 20px;
     width: 350px;
-    /* width: 350px; */
 }
 
 .input-transparent {

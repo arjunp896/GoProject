@@ -6,48 +6,73 @@ import (
 	"goproject/pkg/constants"
 	"goproject/pkg/db"
 	"goproject/pkg/models"
+	"strconv"
 	"strings"
 )
 
-func CreateNewCustomVehicle() {
-	category := constants.Sport
+func CreateNewCustomVehicle(data map[string]interface{}) {
+
+	makeData := make(map[string]interface{})
+
+	var intVar int
+
+	intVar, _ = strconv.Atoi(data["vehicleid"].(string))
+
+	vehicle := GetVehicleById(intVar)
+
+	makeData["vehicle"] = vehicle
+
+	intVar, _ = strconv.Atoi(data["engineid"].(string))
+
+	makeData["engine"] = GetEngineById(intVar)
+
+	var intArr = []int{}
+
+	for _, i := range data["accessoriesid"].([]string) {
+		j, err := strconv.Atoi(i)
+		if err != nil {
+			panic(err)
+		}
+
+		intArr = append(intArr, j)
+	}
+
+	makeData["accessories"] = GetAccessoriesByIds(intArr)
+
+	intVar, _ = strconv.Atoi(data["colorid"].(string))
+
+	makeData["color"] = GetColorById(intVar)
+
+	intVar, _ = strconv.Atoi(data["rooftopid"].(string))
+
+	makeData["rooftop"] = GetRooftopById(intVar)
+
+	intVar, _ = strconv.Atoi(data["transmissionid"].(string))
+
+	makeData["transmission"] = GetTransmissionById(intVar)
+
+	intVar, _ = strconv.Atoi(data["tyreid"].(string))
+
+	makeData["tyre"] = GetTyreById(intVar)
+
+	makeData["user"] = GetUserById(data["userid"].(int))
+
+	category := vehicle.Category
+
+	vehicleType := vehicle.VehicleType
 
 	factory := abstractFactory.GetVehicleFactory(category)
 
-	vehicleType := constants.Car
-
-	vehicleId := 1
-
-	accessories := []int{1, 2, 3}
-
-	engineId := 1
-
-	m := make(map[string]interface{})
-
-	m["engine"] = engineId
-
-	m["rooftop"] = "1"
-
-	m["transmission"] = "1"
-
-	m["tyres"] = "1"
-
-	m["accessories"] = GetAccessoriesByIds(accessories)
-
-	vehicle := GetVehicleById(vehicleId)
-
-	m["vehicle"] = vehicle
-
 	if vehicleType == constants.Car {
 
-		car := factory.MakeCar()
+		car := factory.MakeCar(makeData)
 
 		fmt.Println(car)
 
-	} else {
-		car := factory.MakeCar()
+	}
 
-		car.BuildCar()
+	if vehicleType == constants.Bike {
+
 	}
 }
 
@@ -68,6 +93,8 @@ func GetAccessoriesByIds(accessorieIds []int) []models.Accessory {
 	checkErr(err)
 
 	var accessories []models.Accessory
+
+	defer rows.Close()
 
 	for rows.Next() {
 

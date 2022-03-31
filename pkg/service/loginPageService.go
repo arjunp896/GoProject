@@ -3,6 +3,7 @@ package service
 import (
 	"fmt"
 	"goproject/pkg/db"
+	"goproject/pkg/models"
 )
 
 func ValidateUser(username string, password string) int {
@@ -24,6 +25,8 @@ func ValidateUser(username string, password string) int {
 	checkErr(err)
 
 	var userid int = -1
+
+	defer rows.Close()
 
 	if rows.Next() {
 		err = rows.Scan(&userid)
@@ -48,6 +51,8 @@ func CheckIsNewUserName(username string) bool {
 
 	var uname string
 
+	defer row.Close()
+
 	if row.Next() {
 		row.Scan(&uname)
 		fmt.Println("username :" + uname)
@@ -56,6 +61,21 @@ func CheckIsNewUserName(username string) bool {
 	}
 
 	return true
+}
+
+func GetUserById(id int) models.User {
+
+	query := `SELECT * FROM Users WHERE user_id = ?`
+
+	con, err := db.GetConnection()
+
+	checkErr(err)
+
+	var user models.User
+
+	con.QueryRow(query, id).Scan(&user.UserId, &user.Username, &user.Password, &user.Name)
+
+	return user
 }
 
 func CreateUser(username string, password string, name string) bool {

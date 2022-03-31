@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta charset="utf-8">
+    <title>Index</title>
+
+    <script>
+        var data = '{{.}}';
+    </script>
+
+    <script src="../web/js/jquery.min.js"></script>
+    <script src="../web/js/vehicle_details.js"></script>
+
+    <meta name="keywords" content="*">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" media="screen" href="../web/css/theme.min.css">
+    <link rel="stylesheet" media="screen" href="../web/css/vehicle_details.css">
+
+
+</head>
+<!-- Body-->
+
+<body class="handheld-toolbar-enabled">
+
+    <div id="includedContent"></div>
+    <!-- code for car customization -->
+    <div class="container">
+        <div class="bg-light shadow-lg rounded-3 px-4 py-3 mb-5">
+            <div class="px-lg-3">
+                <div class="row">
+
+                    <!-- Product gallery-->
+                    <div class="col-lg-6 pe-lg-0 pt-lg-1">
+                        <div class="product-gallery">
+
+
+                            <div class="product-gallery-preview order-sm-2">
+                                <div class="product-gallery-preview-item active" id="first">
+                                    <img src="../web/images/default_car.jpg" alt="Product image" style="cursor: pointer;">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Car details-->
+
+                    <div class="col-lg-5 pt-4 pt-lg-0">
+                        <div class="product-details ms-auto pb-3">
+
+                            <!-- Product panels-->
+                            <div class="accordion mb-4" id="productPanels">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header"><a class="accordion-button" href="#productInfo" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="productInfo"><i
+                        class="ci-announcement text-muted fs-lg align-middle mt-n1 me-2"></i>Product info</a></h3>
+                                    <div class="accordion-collapse collapse show" id="productInfo" data-bs-parent="#productPanels">
+                                        <div class="accordion-body">
+                                            <h6 class="fs-sm mb-2">Composition</h6>
+                                            <ul class="fs-sm ps-4">
+                                                <li>Elastic rib: Cotton 95%, Elastane 5%</li>
+                                                <li>Lining: Cotton 100%</li>
+                                                <li>Cotton 80%, Polyester 20%</li>
+                                            </ul>
+                                            <h6 class="fs-sm mb-2">Art. No.</h6>
+                                            <ul class="fs-sm ps-4 mb-0">
+                                                <li>183260098</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fs-sm mb-4"><span class="text-heading fw-medium me-1">Color:</span></div>
+
+                            <!-- color -->
+
+                            <div class="position-relative me-n4 mb-3">
+                                <div class="form-check form-option form-check-inline mb-2">
+                                    <input class="form-check-input" type="radio" name="color" id="color1" data-bs-label="colorOption" value="Red/Dark blue/White" checked>
+                                    <label class="form-option-label rounded-circle" for="color1"><span
+                      class="form-option-color rounded-circle"
+                      style="background-color: red;"></span></label>
+                                </div>
+                                <!-- <div class="form-check form-option form-check-inline mb-2">
+                                    <input class="form-check-input" type="radio" name="color" id="color2" data-bs-label="colorOption" value="Beige/White/Dark grey">
+                                    <label class="form-option-label rounded-circle" for="color2"><span
+                      class="form-option-color rounded-circle"
+                      style="background-color: blue;"></span></label>
+                                </div>
+                                <div class="form-check form-option form-check-inline mb-2">
+                                    <input class="form-check-input" type="radio" name="color" id="color3" data-bs-label="colorOption" value="Dark grey/White/Orange">
+                                    <label class="form-option-label rounded-circle" for="color3"><span
+                      class="form-option-color rounded-circle"
+                      style="background-color: black"></span></label>
+                                </div> -->
+
+                            </div>
+                            <form class="mb-grid-gutter" method="post">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center pb-1">
+                                        <label class="form-label" for="product-size">Engine:</label>
+                                    </div>
+                                    <select class="form-select" required id="product-size">
+                    <option value="default">Default</option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                  </select>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center pb-1">
+                                        <label class="form-label" for="product-size">Rooftop:</label>
+                                    </div>
+                                    <select class="form-select" required id="product-size">
+                    <option value="">Rooftop</option>
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                  </select>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center pb-1">
+                                        <label class="form-label" for="product-size">Transmittion:</label>
+                                    </div>
+                                    <select class="form-select" required id="product-size">
+                    <option value="">Transmittion:</option>
+                    <option value="Automatic">Automatic</option>
+                    <option value="Manual">Manual</option>
+                    
+                  </select>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center pb-1">
+                                        <label class="form-label" for="product-size">Tyres:</label>
+                                    </div>
+                                    <select class="form-select" required id="product-size">
+                    <option value="">Tyres</option>
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                  </select>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center pb-1">
+                                        <label class="form-label" for="product-size">Accessories:</label>
+                                    </div>
+                                    <!-- <select class="form-select" required id="product-size">
+                    <option value="">Accessories</option>
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                  </select> -->
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" data-id="" name="accessories">
+                                        <label class="form-check-label" for="accessories">
+                                            Default checkbox
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- <div class="mb-3 d-flex align-items-center">
+                                    <button class="btn btn-primary btn-shadow d-block w-100" type="submit">
+                    <i class="ci-cart fs-lg me-2"></i>Built It</button>
+                                </div> -->
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product total -->
+        <div class="container_details">
+            <h4>Product Info</h4>
+            <hr>
+            </br>
+            <table id="form-inline">
+                <tr>
+                    <td>
+                        <h6 id="lable">Car Name :
+
+                            <input id="textbox" type="text" value="BMW" name="color" disabled></h6>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+
+
+                    <td>
+                        <h6 id="lable"> Year of Manufaturing :
+
+                            <input id="textbox" type="text" value="2013" name="color" disabled></h6>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h6 id="lable">Model :
+
+                            <input id="textbox" type="text" value="Z4" name="model" disabled></h6>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+
+                    <td>
+                        <h6 id="lable">Total :
+                            <input id="textbox" type="text" value="" name="total" disaabled></h6>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </td>
+
+                    <td>
+                        <button id="btn_cust">Customize it</button>
+                    </td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- <script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="../web/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+
+
+</html>

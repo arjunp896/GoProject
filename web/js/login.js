@@ -23,7 +23,7 @@ function fnSubmitSignUp() {
 
     $('#signUpForm')
         .ajaxForm({
-            url: '/signup', // or whatever
+            url: '/signup',
             dataType: 'json',
             method: "POST",
             success: function(data) {

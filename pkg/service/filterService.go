@@ -22,6 +22,8 @@ func GetCategories(vehicle string) []string {
 
 	var cat string
 
+	defer rows.Close()
+
 	for rows.Next() {
 
 		rows.Scan(&cat)
@@ -46,6 +48,8 @@ func GetMakesByCategory(category string, vehicle string) []string {
 	var makes []string
 
 	var make string
+
+	defer rows.Close()
 
 	for rows.Next() {
 
@@ -77,6 +81,8 @@ func GetYearByCategoryAndMake(category string, vehicleMake string, vehicle strin
 
 	var year string
 
+	defer rows.Close()
+
 	for rows.Next() {
 		rows.Scan(&year)
 		years = append(years, year)
@@ -98,6 +104,8 @@ func GetAccessoriesByMakeModelVehicleType(make string, model string, vehicleType
 	checkErr(err)
 
 	var accessories []models.Accessory
+
+	defer rows.Close()
 
 	for rows.Next() {
 
@@ -129,6 +137,7 @@ func GetTyresByMakeModelVehicleType(make string, model string, vehicleType const
 
 	var tyres []models.Tyre
 
+	defer rows.Close()
 	for rows.Next() {
 
 		var tyre models.Tyre
@@ -159,6 +168,7 @@ func GetTransmissionsByMakeModelSubmodelVehicleType(make string, model string, s
 
 	var transmissions []models.Transmission
 
+	defer rows.Close()
 	for rows.Next() {
 
 		var transmission models.Transmission
@@ -189,6 +199,7 @@ func GetRooftopsByMakeModelVehicleType(make string, model string, vehicleType co
 
 	var rooftops []models.Rooftop
 
+	defer rows.Close()
 	for rows.Next() {
 
 		var rooftop models.Rooftop
@@ -219,6 +230,7 @@ func GetEnginesByMakeVehicleType(make string, vehicleType constants.VehicleType)
 
 	var engines []models.Engine
 
+	defer rows.Close()
 	for rows.Next() {
 
 		var engine models.Engine
@@ -249,6 +261,7 @@ func GetColorsByMakeModelVehicleType(make string, model string, vehicleType cons
 
 	var colors []models.Color
 
+	defer rows.Close()
 	for rows.Next() {
 
 		var color models.Color
@@ -261,5 +274,96 @@ func GetColorsByMakeModelVehicleType(make string, model string, vehicleType cons
 	}
 
 	return colors
+
+}
+
+func GetEngineById(id int) models.Engine {
+
+	query := `SELECT * FROM Engine WHERE engine_id = ? `
+
+	con, err := db.GetConnection()
+
+	checkErr(err)
+	var engine models.Engine
+
+	con.QueryRow(query, id).Scan(&engine.EngineId, &engine.EngineType,
+		&engine.Power, &engine.Description,
+		&engine.Make, &engine.Price,
+		&engine.Vehicletype)
+
+	return engine
+}
+
+func GetColorById(id int) models.Color {
+
+	query := `SELECT * FROM Color WHERE color_id = ?`
+
+	con, err := db.GetConnection()
+
+	checkErr(err)
+
+	var color models.Color
+
+	con.QueryRow(query, id).Scan(&color.ColorId, &color.ColorName,
+		&color.Make, &color.Model,
+		&color.Price, &color.Vehicletype)
+
+	return color
+
+}
+
+func GetRooftopById(id int) models.Rooftop {
+
+	query := `SELECT * FROM Rooftop WHERE rooftop_id = ?`
+
+	con, err := db.GetConnection()
+
+	checkErr(err)
+
+	var rooftop models.Rooftop
+
+	con.QueryRow(query, id).Scan(&rooftop.RooftopId, &rooftop.RooftopType,
+		&rooftop.Description, &rooftop.Make,
+		&rooftop.Model, &rooftop.Price,
+		&rooftop.Vehicletype)
+
+	return rooftop
+}
+
+func GetTransmissionById(id int) models.Transmission {
+
+	query := `SELECT * FROM Transmission WHERE transmission_id = ?`
+
+	con, err := db.GetConnection()
+
+	checkErr(err)
+
+	var transmission models.Transmission
+
+	con.QueryRow(query, id).Scan(&transmission.TransmissionId, &transmission.TransmissionType,
+		&transmission.Description, &transmission.Make,
+		&transmission.Model, &transmission.Submodel, &transmission.Price,
+		&transmission.Vehicletype)
+
+	return transmission
+
+}
+
+func GetTyreById(id int) models.Tyre {
+
+	query := `SELECT * FROM Tyre WHERE tyre_id = ?`
+
+	con, err := db.GetConnection()
+
+	checkErr(err)
+
+	var tyre models.Tyre
+
+	con.QueryRow(query, id).Scan(&tyre.Tyreid, &tyre.TyreType,
+		&tyre.Size, &tyre.Description, &tyre.Make,
+		&tyre.Model, &tyre.Price,
+		&tyre.Vehicletype)
+
+	return tyre
 
 }

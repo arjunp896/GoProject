@@ -204,8 +204,6 @@ $(document).on('click', '#category .dropdown-content a', function() {
 
     var makes = getMake(category);
 
-    // alert(category);
-
     loadDropDownData("make", makes);
 
     getCards(type, category);
@@ -311,7 +309,7 @@ function loadCards(result) {
             $(cards).find(".card-img").attr("src", imgurl);
         }
 
-        $(cards).find(".card-company").text("Comapny : " + company);
+        $(cards).find(".card-company").text("Company : " + company);
         $(cards).find(".card-model").text("Model : " + model);
         $(cards).find(".card-price").text("Base Price : $" + price);
         $(cards).show() //show cards
@@ -333,7 +331,7 @@ function getCards(type, category, make, year) {
     } else if (type == "cars") {
         urlString = "/car/cars/";
     } else if (type == "bikes") {
-        urlString = "/bike/bikes"
+        urlString = "/bike/bikes/"
     }
 
     if (category) {

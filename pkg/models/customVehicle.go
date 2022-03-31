@@ -4,15 +4,23 @@ import "goproject/pkg/constants"
 
 type CustomVehicle struct {
 	CVId         int          `json:"cv_id"`
-	UserId       int          `json:"user_id"`
+	User         User         `json:"user_id"`
 	Vehicle      Vehicle      `json:"vehicle"`
 	TotalPrice   float64      `json:"total_price"`
 	Engine       Engine       `json:"engine"`
 	Transmission Transmission `json:"transmission"`
 	Tyre         Tyre         `json:"tyre"`
-	Rooftop      Rooftop      `json:"rooftop"`
 	Color        Color        `json:"color"`
 	Accessories  []Accessory  `json:"accessories"`
+}
+
+type CustomCar struct {
+	CustomVehicle
+	Rooftop Rooftop `json:"rooftop"`
+}
+
+type CustomBike struct {
+	CustomVehicle
 }
 
 type Engine struct {

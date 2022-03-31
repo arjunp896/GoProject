@@ -39,7 +39,7 @@ func ValidateUser(w http.ResponseWriter, r *http.Request) {
 	} else {
 
 		session.Values["authenticated"] = false
-		session.Values["userid"] = -1.
+		session.Values[constants.USERID_COOKIE_VALUES] = -1.
 
 		resp["error"] = "Username or password is incorrect"
 		w.WriteHeader(http.StatusUnauthorized)

@@ -34,6 +34,12 @@ func LoadDashboardPage(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func LoadMyCars(w http.ResponseWriter, r *http.Request) {
+
+	renderTemplate(w, "./web/vehicles.html")
+
+}
+
 func renderTemplate(w http.ResponseWriter, page string) {
 	// func renderTemplate(params ...interface{}) {
 

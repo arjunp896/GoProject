@@ -1,14 +1,14 @@
 package abstractFactory
 
 import (
-	"goproject/pkg/abstractFactory/carBuilder"
 	"goproject/pkg/constants"
+	"goproject/pkg/models"
 	"log"
 )
 
 type IVehicleFactory interface {
-	MakeCar() carBuilder.Car
-	MakeBike() IBikeBuilder
+	MakeCar(map[string]interface{}) models.CustomCar
+	MakeBike() models.CustomBike
 }
 
 var mapFactory = make(map[constants.Category]IVehicleFactory)

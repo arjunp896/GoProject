@@ -41,7 +41,7 @@ func GetCar(w http.ResponseWriter, r *http.Request) {
 
 	id, _ := strconv.Atoi(params["id"])
 
-	data := service.GetVehicleDetailsPageData(id)
+	data := id
 
 	// json.NewEncoder(w).Encode(car)
 
@@ -69,13 +69,27 @@ func GetBike(w http.ResponseWriter, r *http.Request) {
 
 	id, _ := strconv.Atoi(params["id"])
 
-	data := service.GetVehicleDetailsPageData(id)
+	data := id
 
 	// json.NewEncoder(w).Encode(car)
 
 	// carJsn := []byte(fmt.Sprintf("%v", car))
 
 	renderTemplateWithData(w, string(http.Dir("./web/vehicle_details.html")), data)
+
+}
+
+func GetVehicle(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-type", "application/json")
+
+	params := mux.Vars(r)
+
+	id, _ := strconv.Atoi(params["id"])
+
+	data := service.GetVehicleDetailsPageData(id)
+
+	json.NewEncoder(w).Encode(data)
 
 }
 

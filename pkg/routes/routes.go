@@ -17,8 +17,7 @@ func InitializeHandlers() *mux.Router {
 
 	// ----------------- load page -----------------
 
-	// load index page
-	r.Handle(string(constants.INDEX_ROUTE), http.FileServer(http.Dir("./web/")))
+	r.HandleFunc(string(constants.INDEX_ROUTE), controller.LoadLoginPage).Methods("GET")
 
 	// load login page
 	r.HandleFunc(string(constants.LOGIN_ROUTE), controller.LoadLoginPage).Methods("GET")
@@ -28,6 +27,8 @@ func InitializeHandlers() *mux.Router {
 
 	// load dashboard page
 	r.HandleFunc(string(constants.DASHBOARD_ROUTE), controller.LoadDashboardPage).Methods("GET")
+
+	r.HandleFunc(string(constants.MYCARS_ROUTE), controller.LoadMyCars).Methods("GET")
 
 	// -----------------------------------------------
 
@@ -63,6 +64,8 @@ func InitializeHandlers() *mux.Router {
 
 	// cars
 
+	r.HandleFunc(string(constants.GET_VEHICLE_ROUTE), controller.GetVehicle).Methods("GET")
+
 	r.HandleFunc(string(constants.GET_CARS_BY_CATEGORY), controller.GetCarsByFilter).Methods("GET")
 
 	r.HandleFunc(string(constants.GET_CARS_BY_CATEGORY_MAKE), controller.GetCarsByFilter).Methods("GET")
@@ -78,6 +81,9 @@ func InitializeHandlers() *mux.Router {
 	r.HandleFunc(string(constants.GET_BIKES_BY_CATEGORY_MAKE_YEAR), controller.GetBikesByFilter).Methods("GET")
 
 	// ------------------------------------------
+
+	// custom vehicle
+	r.HandleFunc(string(constants.CREATE_CUSTOM_VEHICLE_ROUTE), controller.CreateNewCustomVehicle).Methods("POST")
 
 	return r
 }
